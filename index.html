@@ -187,6 +187,21 @@
             background: #f56565;
         }
         
+        .toast.hide {
+            animation: slideOut 0.3s ease forwards;
+        }
+        
+        @keyframes slideOut {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+        }
+        
         .usage-guide {
             background: #f0f7ff;
             border-left: 4px solid #4A90E2;
@@ -341,7 +356,7 @@ background-image: url('https://raw.githubusercontent.com/ranyaconnectallfixr/Bra
             
             // Auto-remove after 3 seconds
             setTimeout(() => {
-                toast.style.animation = 'slideIn 0.3s ease reverse';
+                toast.classList.add('hide');
                 setTimeout(() => toast.remove(), 300);
             }, 3000);
         }
@@ -350,11 +365,31 @@ background-image: url('https://raw.githubusercontent.com/ranyaconnectallfixr/Bra
             // Create GitHub raw URL
             const githubRawUrl = `${GITHUB_RAW_BASE}/${text}`;
             
-            navigator.clipboard.writeText(githubRawUrl).then(function() {
-                showToast('✓ Raw URL copied to clipboard!', 'success');
-            }, function(err) {
-                showToast('✗ Failed to copy: ' + err, 'error');
-            });
+            // Check if Clipboard API is available
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(githubRawUrl).then(function() {
+                    showToast('✓ Raw URL copied to clipboard!', 'success');
+                }, function(err) {
+                    showToast('✗ Failed to copy: ' + err, 'error');
+                });
+            } else {
+                // Fallback for browsers without Clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = githubRawUrl;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    showToast('✓ Raw URL copied to clipboard!', 'success');
+                } catch (err) {
+                    showToast('✗ Failed to copy. Please copy manually: ' + githubRawUrl, 'error');
+                } finally {
+                    document.body.removeChild(textArea);
+                }
+            }
         }
     </script>
 </body>
