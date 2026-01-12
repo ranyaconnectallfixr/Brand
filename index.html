@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Assets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .section h2 {
+            color: #4A90E2;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .asset-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .asset-preview {
+            background: #fafafa;
+            border-radius: 4px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .asset-preview img {
+            max-width: 100%;
+            max-height: 120px;
+        }
+        
+        .asset-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .asset-card p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .link-section {
+            background: #f9f9f9;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .link-section h4 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .raw-link {
+            display: block;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #4A90E2;
+            text-decoration: none;
+            word-break: break-all;
+            transition: background 0.2s;
+        }
+        
+        .raw-link:hover {
+            background: #f0f7ff;
+        }
+        
+        .copy-btn {
+            background: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.4rem 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background: #357ABD;
+        }
+        
+        .usage-guide {
+            background: #f0f7ff;
+            border-left: 4px solid #4A90E2;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .usage-guide h4 {
+            color: #4A90E2;
+            margin-bottom: 0.5rem;
+        }
+        
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Brand Assets</h1>
+        <p>Official brand resources with direct links for your applications</p>
+    </header>
+    
+    <div class="container">
+        <div class="section">
+            <h2>📦 Logos</h2>
+            <div class="assets-grid">
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="assets/logos/logo.svg" alt="Primary Logo">
+                    </div>
+                    <h3>Primary Logo</h3>
+                    <p>Main brand logo with blue background</p>
+                    <div class="link-section">
+                        <h4>Raw File Link:</h4>
+                        <a href="assets/logos/logo.svg" class="raw-link" target="_blank">assets/logos/logo.svg</a>
+                        <button class="copy-btn" onclick="copyToClipboard('assets/logos/logo.svg')">Copy Link</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview" style="background: #1A1A1A;">
+                        <img src="assets/logos/logo-dark.svg" alt="Dark Logo">
+                    </div>
+                    <h3>Dark Logo</h3>
+                    <p>Logo variant with dark background</p>
+                    <div class="link-section">
+                        <h4>Raw File Link:</h4>
+                        <a href="assets/logos/logo-dark.svg" class="raw-link" target="_blank">assets/logos/logo-dark.svg</a>
+                        <button class="copy-btn" onclick="copyToClipboard('assets/logos/logo-dark.svg')">Copy Link</button>
+                    </div>
+                </div>
+                
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="assets/logos/logo-light.svg" alt="Light Logo">
+                    </div>
+                    <h3>Light Logo</h3>
+                    <p>Logo variant with light background</p>
+                    <div class="link-section">
+                        <h4>Raw File Link:</h4>
+                        <a href="assets/logos/logo-light.svg" class="raw-link" target="_blank">assets/logos/logo-light.svg</a>
+                        <button class="copy-btn" onclick="copyToClipboard('assets/logos/logo-light.svg')">Copy Link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🎨 Icons</h2>
+            <div class="assets-grid">
+                <div class="asset-card">
+                    <div class="asset-preview">
+                        <img src="assets/icons/icon.svg" alt="Brand Icon">
+                    </div>
+                    <h3>Brand Icon</h3>
+                    <p>Circular icon for apps and favicons</p>
+                    <div class="link-section">
+                        <h4>Raw File Link:</h4>
+                        <a href="assets/icons/icon.svg" class="raw-link" target="_blank">assets/icons/icon.svg</a>
+                        <button class="copy-btn" onclick="copyToClipboard('assets/icons/icon.svg')">Copy Link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>💡 Usage Guide</h2>
+            <div class="usage-guide">
+                <h4>Using Raw Links in Your Applications</h4>
+                <p>You can use these raw file links directly in your applications. Here are some examples:</p>
+                
+                <h4 style="margin-top: 1rem;">HTML:</h4>
+                <div class="code-block">
+&lt;img src="https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/logos/logo.svg" alt="Brand Logo"&gt;
+                </div>
+                
+                <h4 style="margin-top: 1rem;">Markdown:</h4>
+                <div class="code-block">
+![Brand Logo](https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/logos/logo.svg)
+                </div>
+                
+                <h4 style="margin-top: 1rem;">CSS:</h4>
+                <div class="code-block">
+background-image: url('https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/logos/logo.svg');
+                </div>
+                
+                <p style="margin-top: 1rem;"><strong>Note:</strong> When using these links, replace the file paths above with the full GitHub raw URL format shown in the examples.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Brand Assets. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        function copyToClipboard(text) {
+            // Create GitHub raw URL
+            const githubRawUrl = `https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/${text}`;
+            
+            navigator.clipboard.writeText(githubRawUrl).then(function() {
+                alert('Raw URL copied to clipboard!\n\n' + githubRawUrl);
+            }, function(err) {
+                alert('Failed to copy: ' + err);
+            });
+        }
+    </script>
+</body>
+</html>
