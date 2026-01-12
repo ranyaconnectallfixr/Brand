@@ -153,6 +153,40 @@
             background: #357ABD;
         }
         
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2d3748;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            max-width: 400px;
+            word-break: break-all;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .toast.success {
+            background: #48bb78;
+        }
+        
+        .toast.error {
+            background: #f56565;
+        }
+        
         .usage-guide {
             background: #f0f7ff;
             border-left: 4px solid #4A90E2;
@@ -202,7 +236,7 @@
                     <p>Main brand logo with blue background</p>
                     <div class="link-section">
                         <h4>Raw File Link:</h4>
-                        <a href="assets/logos/logo.svg" class="raw-link" target="_blank">assets/logos/logo.svg</a>
+                        <a href="https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/logos/logo.svg" class="raw-link" target="_blank">https://raw.githubusercontent.com/.../logo.svg</a>
                         <button class="copy-btn" onclick="copyToClipboard('assets/logos/logo.svg')">Copy Link</button>
                     </div>
                 </div>
@@ -215,7 +249,7 @@
                     <p>Logo variant with dark background</p>
                     <div class="link-section">
                         <h4>Raw File Link:</h4>
-                        <a href="assets/logos/logo-dark.svg" class="raw-link" target="_blank">assets/logos/logo-dark.svg</a>
+                        <a href="https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/logos/logo-dark.svg" class="raw-link" target="_blank">https://raw.githubusercontent.com/.../logo-dark.svg</a>
                         <button class="copy-btn" onclick="copyToClipboard('assets/logos/logo-dark.svg')">Copy Link</button>
                     </div>
                 </div>
@@ -228,7 +262,7 @@
                     <p>Logo variant with light background</p>
                     <div class="link-section">
                         <h4>Raw File Link:</h4>
-                        <a href="assets/logos/logo-light.svg" class="raw-link" target="_blank">assets/logos/logo-light.svg</a>
+                        <a href="https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/logos/logo-light.svg" class="raw-link" target="_blank">https://raw.githubusercontent.com/.../logo-light.svg</a>
                         <button class="copy-btn" onclick="copyToClipboard('assets/logos/logo-light.svg')">Copy Link</button>
                     </div>
                 </div>
@@ -246,7 +280,7 @@
                     <p>Circular icon for apps and favicons</p>
                     <div class="link-section">
                         <h4>Raw File Link:</h4>
-                        <a href="assets/icons/icon.svg" class="raw-link" target="_blank">assets/icons/icon.svg</a>
+                        <a href="https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/assets/icons/icon.svg" class="raw-link" target="_blank">https://raw.githubusercontent.com/.../icon.svg</a>
                         <button class="copy-btn" onclick="copyToClipboard('assets/icons/icon.svg')">Copy Link</button>
                     </div>
                 </div>
@@ -280,18 +314,46 @@ background-image: url('https://raw.githubusercontent.com/ranyaconnectallfixr/Bra
     </div>
     
     <footer>
-        <p>&copy; 2026 Brand Assets. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> Brand Assets. All rights reserved.</p>
     </footer>
     
     <script>
+        // Configuration constants
+        const GITHUB_REPO = 'ranyaconnectallfixr/Brand';
+        const GITHUB_BRANCH = 'main';
+        const GITHUB_RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_REPO}/${GITHUB_BRANCH}`;
+        
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        function showToast(message, type = 'success') {
+            // Remove any existing toasts
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            // Create new toast
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            // Auto-remove after 3 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
         function copyToClipboard(text) {
             // Create GitHub raw URL
-            const githubRawUrl = `https://raw.githubusercontent.com/ranyaconnectallfixr/Brand/main/${text}`;
+            const githubRawUrl = `${GITHUB_RAW_BASE}/${text}`;
             
             navigator.clipboard.writeText(githubRawUrl).then(function() {
-                alert('Raw URL copied to clipboard!\n\n' + githubRawUrl);
+                showToast('✓ Raw URL copied to clipboard!', 'success');
             }, function(err) {
-                alert('Failed to copy: ' + err);
+                showToast('✗ Failed to copy: ' + err, 'error');
             });
         }
     </script>
